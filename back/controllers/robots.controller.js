@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import * as crud from '../services/crud.js';
 import { robotsConnect } from '../services/db.js';
 
