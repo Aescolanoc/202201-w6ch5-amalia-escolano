@@ -22,6 +22,7 @@
         "eslint-plugin-import": "^2.25.4",
         "eslint-plugin-jest": "^26.0.0",
         "jest": "^27.4.7",
+        "mockingoose": "^2.15.2",
         "supertest": "^6.2.2"
     },
     "prettier": {
