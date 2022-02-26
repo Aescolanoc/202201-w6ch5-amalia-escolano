@@ -11,8 +11,8 @@ export async function mongoConnect() {
     return mongooseConnect;
 }
 
-export async function robotsConnect(collection = 'robots') {
-    await mongoConnect();
+export function robotsConnect(collection = 'robots') {
+    mongoConnect();
     const robotSchema = new mongoose.Schema({
         name: String,
         image: String,
