@@ -2,18 +2,18 @@ import axios from "axios";
 
 const ROBOTS_API = "http://localhost:8000/robots/";
 
-export function getAll() {
+export function getAllRobots() {
   return axios.get(ROBOTS_API);
 }
-export function get(id) {
+export function getRobot(id) {
   return axios.get(ROBOTS_API + id);
 }
-export function set(robot) {
+export function setRobot(robot) {
   return axios.post(ROBOTS_API, robot);
 }
-export function update(robot) {
+export function updateRobot(robot) {
   return axios.patch(ROBOTS_API + robot.id, robot);
 }
-export function remove(id) {
+export function removeRobot(id) {
   return axios.delete(ROBOTS_API + id);
 }

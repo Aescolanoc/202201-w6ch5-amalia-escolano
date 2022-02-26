@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as actions from "../reducer/robots/action-creator";
-import { getAll, getAllRobots } from "../services/api";
+import { getAllRobots } from "../services/api";
 import { Link } from "react-router-dom";
 
 export function RobotsList() {
@@ -29,7 +29,7 @@ export function RobotsList() {
           </header>
           <div>
             <ul>
-              {robotState[0].robots.map((item, index) => (
+              {robotState.map((item, index) => (
                 <>
                   <figure key={item.id}>
                     <img src={item.image} alt="none" />
@@ -39,7 +39,7 @@ export function RobotsList() {
                   <button
                     key={item.name}
                     onClick={() => {
-                      dispatch(actions.removeRobot(item.id));
+                      dispatch(actions.removeRobot(item));
                     }}
                   >
                     delete
