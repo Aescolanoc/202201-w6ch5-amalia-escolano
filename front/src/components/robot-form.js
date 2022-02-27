@@ -22,10 +22,6 @@ export function RobotForm(robot) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   console.log(currentRobot);
-  // }, [currentRobot]);
-
   let newRobot = {};
   let robotModified = currentRobot;
 
@@ -39,7 +35,6 @@ export function RobotForm(robot) {
 
   function handleUpdate(event) {
     event.preventDefault();
-    console.log(robotModified);
     updateRobot(robotModified).then((resp) => {
       dispatch(actions.updateRobot(resp.data));
     });
