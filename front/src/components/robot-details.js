@@ -16,13 +16,24 @@ export function RobotDetails(robot) {
 
   return (
     <>
-      <p>Aqui se verá el detalle del robot {robotDetails.name}</p>
-      <Link to={{ pathname: `/robots/update/${robotDetails._id}` }}>
-        <button>Modificar Robot</button>
-      </Link>
-      <Link to="/robots">
-        <button>Volver al listado</button>
-      </Link>
+      <h3>Detalles de {robotDetails.name}</h3>
+      <div>
+        <figure key={robotDetails.id}>
+          <img src={robotDetails.image} alt="none" />
+          <figcaption>{robotDetails.Name}</figcaption>
+        </figure>
+      </div>
+      <div>Velocidad: {robotDetails.speed}</div>
+      <div>Resistencia: {robotDetails.strength}</div>
+      <div>Fecha de creación: {robotDetails.creationdate}</div>
+      <div>
+        <Link to={{ pathname: `/robots/update/${robotDetails._id}` }}>
+          <button>Modificar Robot</button>
+        </Link>
+        <Link to="/robots">
+          <button>Volver al listado</button>
+        </Link>
+      </div>
     </>
   );
 }

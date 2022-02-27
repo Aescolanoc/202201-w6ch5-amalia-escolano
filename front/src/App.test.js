@@ -1,15 +1,18 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import App from "./App";
+import { RobotList } from "./components/robots-list";
 
-test("renders learn react link", () => {
-  const { getByText } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+jest.mock("./components/robots-list");
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+describe("Test for App Router", () => {
+  test("renders RobotList on default route", () => {
+    RobotList.mockImplementation(() => <div>PageRobotListMock</div>);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    expect(screen.getByText("PageRobotListMock")).toBeInTheDocument();
+  });
 });

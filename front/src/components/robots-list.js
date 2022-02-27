@@ -29,27 +29,28 @@ export function RobotsList() {
           <header>
             <h1> ROBOTS LIST </h1>
           </header>
+          <Link to="/robotform">
+            <button>Añadir nuevo robot</button>
+          </Link>
           <div>
-            <ul>
+            <div>
               {robotState.map((item, index) => (
                 <>
                   <Link to={{ pathname: `/robots/${item._id}` }}>
                     <>
                       <figure key={item.id}>
-                        <img src={item.image} alt="none" />
-                        <figcaption>{item.Name}</figcaption>
+                        <img src={item.image} alt={item.name} />
+                        <figcaption>{item.name}</figcaption>
                       </figure>
                     </>
                   </Link>
+
                   <button key={item.name} value={item._id} onClick={(ev) => handleDelete(ev.target.value)}>
                     delete
                   </button>
                 </>
               ))}
-            </ul>
-            <Link to="/robotform">
-              <button>Añadir</button>
-            </Link>
+            </div>
           </div>
         </>
       ) : (

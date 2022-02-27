@@ -12,7 +12,7 @@ export function setRobot(robot) {
   return axios.post(ROBOTS_API, robot);
 }
 export function updateRobot(robot) {
-  return axios.patch(ROBOTS_API + robot.id, robot);
+  return axios.patch(ROBOTS_API + robot._id, robot);
 }
 export function removeRobot(id) {
   return axios.delete(ROBOTS_API + id);

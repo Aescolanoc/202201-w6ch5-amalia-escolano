@@ -15,6 +15,6 @@ app.use(cors());
 
 app.use('/robots', robotsRouter);
 
-app.listen(port, () => {
+export const serverInstance = app.listen(port, () => {
     console.log(`Server listening in http://localhost:${port}`);
 });
