@@ -10,15 +10,9 @@ describe('Testing DB.js', function () {
             process.env.DBNAME
         );
     });
-    test('calling the function robotsConnect and return the model', async () => {
-        const result = await robotsConnect('robots');
 
+    test('calling the function robotsConnect and return the model', async () => {
+        const result = await robotsConnect();
         expect(result).toBeTruthy();
-        expect(result()).toHaveProperty('_id');
-        expect(result()).toHaveProperty('name');
-        expect(result()).toHaveProperty('image');
-        expect(result()).toHaveProperty('speed');
-        expect(result()).toHaveProperty('strength');
-        expect(result()).toHaveProperty('creationdate');
     });
 });
