@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as actions from "../reducer/robots/action-creator";
-import { getAllRobots } from "../services/api";
+import { getAllRobots, removeRobot } from "../services/api";
 import { Link } from "react-router-dom";
 
 export function RobotsList() {
@@ -14,11 +14,13 @@ export function RobotsList() {
     getAllRobots().then((resp) => {
       dispatch(actions.loadRobot(resp.data));
     });
-  }, []);
+  }, [dispatch]);
 
-  useEffect(() => {
-    console.log(robotState);
-  }, [robotState]);
+  function handleDelete(id) {
+    removeRobot(id).then((resp) => {
+      dispatch(actions.removeRobot(resp.data));
+    });
+  }
 
   return (
     <div>
@@ -31,17 +33,15 @@ export function RobotsList() {
             <ul>
               {robotState.map((item, index) => (
                 <>
-                  <figure key={item.id}>
-                    <img src={item.image} alt="none" />
-                    <figcaption>{item.Name}</figcaption>
-                  </figure>
-
-                  <button
-                    key={item.name}
-                    onClick={() => {
-                      dispatch(actions.removeRobot(item));
-                    }}
-                  >
+                  <Link to={{ pathname: `/robots/${item._id}` }}>
+                    <>
+                      <figure key={item.id}>
+                        <img src={item.image} alt="none" />
+                        <figcaption>{item.Name}</figcaption>
+                      </figure>
+                    </>
+                  </Link>
+                  <button key={item.name} value={item._id} onClick={(ev) => handleDelete(ev.target.value)}>
                     delete
                   </button>
                 </>

@@ -17,3 +17,7 @@ export function updateRobot(robot) {
 export function removeRobot(id) {
   return axios.delete(ROBOTS_API + id);
 }
+
+export function getDetails(url) {
+  return axios.get(url);
+}
