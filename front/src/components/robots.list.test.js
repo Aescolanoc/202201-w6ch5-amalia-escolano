@@ -1,28 +1,20 @@
-import { RobotsList } from "./robots-list";
-import React from "react";
+import { render, screen, waitForElement } from "@testing-library/react";
+import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import { render, screen } from "@testing-library/react";
+import { store } from "../reducer/store";
+import { RobotsList } from "./robots-list";
 
-describe("Robots list component", () => {
-  let preloadedState;
-  beforeEach(() => {
-    preloadedState = {
-      robots: [
-        {
-          _id: 1,
-          name: "robot 1",
-          image: "foto",
-        },
-      ],
-    };
-  });
+describe("robot-list Component", () => {
   test("should be rendered", async () => {
     render(
       <MemoryRouter>
-        <RobotsList />
-      </MemoryRouter>,
-      { preloadedState }
+        <Provider store={store}>
+          <RobotsList />
+        </Provider>
+      </MemoryRouter>
     );
-    expect(await screen.getByText(/Robot/i));
+
+    expect(screen.findAllByAltText(/ROBOTS LIST/i));
+    await waitForElement(() => expect(screen.getAllByRole("figure")));
   });
 });

@@ -25,34 +25,29 @@ export function RobotsList() {
   return (
     <div>
       {robotState.length ? (
-        <>
+        <div>
           <header>
             <h1> ROBOTS LIST </h1>
           </header>
           <Link to="/robotform">
             <button>Añadir nuevo robot</button>
           </Link>
-          <div>
-            <div>
-              {robotState.map((item, index) => (
+          {robotState.map((item, index) => (
+            <div key={item._id}>
+              <Link to={{ pathname: `/robots/${item._id}` }}>
                 <>
-                  <Link to={{ pathname: `/robots/${item._id}` }}>
-                    <>
-                      <figure key={item.id}>
-                        <img src={item.image} alt={item.name} />
-                        <figcaption>{item.name}</figcaption>
-                      </figure>
-                    </>
-                  </Link>
-
-                  <button key={item.name} value={item._id} onClick={(ev) => handleDelete(ev.target.value)}>
-                    delete
-                  </button>
+                  <figure>
+                    <img src={item.image} alt={item.name} />
+                    <figcaption>{item.name}</figcaption>
+                  </figure>
                 </>
-              ))}
+              </Link>
+              <button value={item._id} onClick={(ev) => handleDelete(ev.target.value)}>
+                delete
+              </button>
             </div>
-          </div>
-        </>
+          ))}
+        </div>
       ) : (
         <p>Loading</p>
       )}
