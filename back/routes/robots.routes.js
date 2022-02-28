@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 import {
+    protectRoute,
     getAllRobots,
     getRobot,
     insertRobot,
@@ -9,7 +10,7 @@ import {
     deleteRobot,
 } from '../controllers/robots.controller.js';
 
-router.get('/', getAllRobots);
+router.get('/robots', protectRoute, getAllRobots);
 router.get('/:id', getRobot);
 router.post('/', insertRobot);
 router.patch('/:id', updateRobot);
