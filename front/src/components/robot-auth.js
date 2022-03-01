@@ -34,7 +34,7 @@ export function RobotAuth() {
 
   return (
     <div>
-      {islogged === true ? <p>Bienvenido de nuevo {currentUser.name}</p> : <p>Introduzca sus datos</p>}
+      {islogged === true ? <p>Bienvenido de nuevo {currentUser.userName}</p> : <p>Introduzca sus datos</p>}
       <form>
         <label htmlFor="name">
           Nombre:

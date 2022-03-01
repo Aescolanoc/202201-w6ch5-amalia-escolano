@@ -1,30 +1,28 @@
 import { createToken } from '../services/auth.js';
 import bcrypt from 'bcryptjs';
-import { USERS } from '../services/users.js';
+import { userCreator } from '../models/user.model.js';
 
-export const login = (req, resp, next) => {
-    const user = req.body;
+export const login = async (req, resp, next) => {
+    const userToCheck = req.body;
+    const User = userCreator();
+    const userDb = await User.findOne({ name: userToCheck.name });
 
-    if (!user.name || !user.passwd) {
+    if (!userToCheck.name || !userToCheck.passwd) {
         next(new Error('Missing data, try again'));
     } else {
-        // TODO comprobar usuario
-
-        if (
-            !USERS.some(
-                (item) =>
-                    item.name === user.name &&
-                    bcrypt.compareSync(user.passwd, item.passwd)
-            )
-        ) {
-            next(new Error('user or password invalid'));
+        if (userDb) {
+            if (bcrypt.compareSync(userToCheck.passwd, userDb.passwd)) {
+                const id = parseInt(Math.random() * 10000);
+                const token = createToken({
+                    name: userToCheck.name,
+                    id,
+                });
+                resp.json({ token, userName: userToCheck.name, id });
+            } else {
+                next(new Error('user or password invalid'));
+            }
         } else {
-            const id = parseInt(Math.random() * 10000);
-            const token = createToken({
-                name: user.name,
-                id,
-            });
-            resp.json({ token, userName: user.name, id });
+            next(new Error('User not found'));
         }
     }
 };

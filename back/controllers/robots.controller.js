@@ -1,8 +1,8 @@
 import * as crud from '../services/crud.js';
-import { robotsConnect } from '../services/db.js';
+import { robotsCreator } from '../models/robot.model.js';
 import { verifyToken } from '../services/auth.js';
 
-const Robot = robotsConnect();
+const Robot = robotsCreator();
 
 export const getAllRobots = (req, res) => {
     crud.getAllRobots(Robot).then((resp) => {
