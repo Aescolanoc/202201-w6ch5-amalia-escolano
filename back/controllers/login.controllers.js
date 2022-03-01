@@ -6,7 +6,7 @@ export const login = (req, resp, next) => {
     const user = req.body;
 
     if (!user.name || !user.passwd) {
-        next(new Error('user or password invalid'));
+        next(new Error('Missing data, try again'));
     } else {
         // TODO comprobar usuario
 
@@ -19,10 +19,12 @@ export const login = (req, resp, next) => {
         ) {
             next(new Error('user or password invalid'));
         } else {
+            const id = parseInt(Math.random() * 10000);
             const token = createToken({
                 name: user.name,
+                id,
             });
-            resp.json({ token });
+            resp.json({ token, userName: user.name, id });
         }
     }
 };
