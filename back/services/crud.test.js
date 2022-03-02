@@ -1,4 +1,4 @@
-import { robotsConnect } from './db.js';
+import { robotsCreator } from '../models/robot.model.js';
 import * as robotsSrv from './crud.js';
 
 describe('when a collection is defined and populated', () => {
@@ -7,7 +7,7 @@ describe('when a collection is defined and populated', () => {
     let first_id;
     const collection = 'robotstests';
     beforeAll(async () => {
-        robotModel = await robotsConnect(collection);
+        robotModel = await robotsCreator(collection);
     });
 
     afterAll(async () => {

@@ -11,16 +11,16 @@ export async function mongoConnect() {
     return mongooseConnect;
 }
 
-export function robotsConnect(collection = 'robots') {
-    mongoConnect();
-    const robotSchema = new mongoose.Schema({
-        name: String,
-        image: String,
-        speed: Number,
-        strength: Number,
-        creationdate: Number,
-    });
+// export function robotsConnect(collection = 'robots') {
+//     mongoConnect();
+//     const robotSchema = new mongoose.Schema({
+//         name: String,
+//         image: String,
+//         speed: Number,
+//         strength: Number,
+//         creationdate: Number,
+//     });
 
-    const Robot = mongoose.model(collection, robotSchema);
-    return Robot;
-}
+//     const Robot = mongoose.model(collection, robotSchema);
+//     return Robot;
+// }
